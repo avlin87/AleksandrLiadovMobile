@@ -1,0 +1,15 @@
+# Project exclude paths
+/target/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Allure files
+.allure
+
+### IntelliJ IDEA ###
+.idea
+*.iml
