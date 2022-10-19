@@ -8,13 +8,13 @@ import setup.BaseTest;
 
 public class NativeMobileTests extends BaseTest {
 
-    @Test(groups = {"native"},
-        priority = 1,
-        description = "This simple test just click on the Sign In button")
-    public void simpleNativeTest() throws IllegalAccessException, NoSuchFieldException, InstantiationException {
-        getPo().getWelement("signInBtn").click();
-        System.out.println("Simplest Android native test done");
-    }
+  @Test(groups = {"native"},
+      priority = 1,
+      description = "This simple test just click on the Sign In button")
+  public void simpleNativeTest() throws IllegalAccessException, NoSuchFieldException, InstantiationException {
+    getPo().getWelement("signInBtn").click();
+    System.out.println("Simplest Android native test done");
+  }
 
   @Test(groups = {"native"},
       priority = 2,
@@ -31,7 +31,8 @@ public class NativeMobileTests extends BaseTest {
     getPo().getWelement("loginPassword").sendKeys(getProperty(DataEnum.USER_PASSWORD));
     getPo().getWelement("signInBtn").click();
 
-    assert getPo().getWelement("actionBarText").getText().equals(getProperty(DataEnum.TARGET_PAGE)) : "This is not BudgetActivity page";
+    assert getPo().getWelement("actionBarText").getText()
+        .equals(getProperty(DataEnum.TARGET_PAGE)) : "This is not BudgetActivity page";
 
     System.out.println("register a new account native test done");
   }

@@ -14,7 +14,7 @@ public class PageObject implements setup.PageObject {
   /**
    * Constructor - that create page object based on appType.
    *
-   * @param appType - type of app such as 'web' for browser app.
+   * @param appType      - type of app such as 'web' for browser app.
    * @param appiumDriver - driver.
    * @throws Exception - thrown in case provided appType is unknown.
    */

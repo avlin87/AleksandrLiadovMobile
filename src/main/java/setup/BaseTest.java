@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
@@ -18,23 +19,30 @@ public class BaseTest implements Driver {
 
   private static AppiumDriver appiumDriver; // singleton
   private static PageObject po;
+  private static WebDriverWait driverWait;
 
   @Override
   public AppiumDriver getDriver() {
     return appiumDriver;
   }
 
+  @Override
+  public WebDriverWait getWaitDriver() {
+    return driverWait;
+  }
+
   public PageObject getPo() {
     return po;
   }
 
-  /** Method prepares test environment.
+  /**
+   * Method prepares test environment.
    *
    * @param platformName - type of operating system.
-   * @param appType - type of app such as 'web' for browser app.
-   * @param deviceName - name of device under test.
-   * @param browserName - name of browser under test.
-   * @param app - name of application under test.
+   * @param appType      - type of app such as 'web' for browser app.
+   * @param deviceName   - name of device under test.
+   * @param browserName  - name of browser under test.
+   * @param app          - name of application under test.
    * @throws Exception - thrown in case Page Object not created.
    */
   @Parameters({"platformName", "appType", "deviceName", "browserName", "app"})
@@ -68,6 +76,7 @@ public class BaseTest implements Driver {
 
     try {
       appiumDriver = new AppiumDriver(new URL(System.getProperty("ts.appium")), capabilities);
+      driverWait = new WebDriverWait(appiumDriver, 10);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     }
