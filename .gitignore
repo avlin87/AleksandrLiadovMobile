@@ -13,3 +13,6 @@
 ### IntelliJ IDEA ###
 .idea
 *.iml
+
+# secret
+/src/main/resources/secrets/apiKey.properties

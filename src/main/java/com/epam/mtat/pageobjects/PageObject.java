@@ -1,13 +1,16 @@
-package pageobjects;
+package com.epam.mtat.pageobjects;
 
+import com.epam.mtat.setup.PageObjectBase;
 import io.appium.java_client.AppiumDriver;
 import java.lang.reflect.Field;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 
 /**
  * PageObject - performs creation of requested Page Object.
  */
-public class PageObject implements setup.PageObject {
+@Slf4j
+public class PageObject implements PageObjectBase {
 
   private final Object somePageObject; // it should be set of web page or EPAM Test App WebElements
 
@@ -18,8 +21,8 @@ public class PageObject implements setup.PageObject {
    * @param appiumDriver - driver.
    * @throws Exception - thrown in case provided appType is unknown.
    */
-  public PageObject(String appType, AppiumDriver appiumDriver) throws Exception {
-    System.out.println("Current app type: " + appType);
+  public PageObject(String appType, AppiumDriver<WebElement> appiumDriver) throws Exception {
+    log.info("Current app type: " + appType);
     switch (appType) {
       case "web":
         somePageObject = new WebPageObject(appiumDriver);
@@ -30,16 +33,14 @@ public class PageObject implements setup.PageObject {
       default:
         throw new Exception("Can't create a page object for " + appType);
     }
-
   }
 
-
   @Override
-  public WebElement getWelement(String weName) throws NoSuchFieldException, IllegalAccessException {
+  public WebElement getWebElement(String weName)
+      throws NoSuchFieldException, IllegalAccessException {
     // use reflection technique
     Field field = somePageObject.getClass().getDeclaredField(weName);
     field.setAccessible(true);
     return (WebElement) field.get(somePageObject);
-
   }
 }

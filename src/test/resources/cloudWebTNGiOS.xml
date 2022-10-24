@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Web mobile testing Suite">
   <parameter name="appType" value="web"/>
-  <parameter name="deviceName" value="emulator-5554"/>
-  <parameter name="platformName" value="Android"/>
-  <parameter name="browserName" value="Chrome"/>
+  <parameter name="deviceName" value="IPHONE iPhone"/>
+  <parameter name="platformName" value="iOS"/>
+  <parameter name="browserName" value="Safari"/>
+  <parameter name="isCloud" value="true"/>
   <test name="Web tests">
     <groups>
       <run>

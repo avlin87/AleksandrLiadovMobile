@@ -12,6 +12,7 @@
         <java-client.version>7.3.0</java-client.version>
         <testng.version>7.1.0</testng.version>
         <lombok.version>1.18.24</lombok.version>
+        <logback-classic.version>1.2.11</logback-classic.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     </properties>
 
@@ -31,6 +32,11 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,6 +51,8 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <ts.appium>http://localhost:4723/wd/hub</ts.appium>
+                        <ts.appiumCloudProject>aleksandr_liadov</ts.appiumCloudProject>
+                        <ts.appiumCloudHub>app.mobitru.com</ts.appiumCloudHub>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -71,12 +79,52 @@
         </profile>
 
         <profile>
+            <id>claudNativeAndroid</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/cloudNativeAndroidTNG.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>claudNativeIOS</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/cloudNativeTNGiOS.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
             <id>web</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <suite.file>./src/test/resources/webTNG.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>cloudWebAndroid</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>./src/test/resources/cloudWebAndroidTNG.xml</suite.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>cloudWebIOS</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>./src/test/resources/cloudWebTNGiOS.xml</suite.file>
             </properties>
         </profile>
     </profiles>

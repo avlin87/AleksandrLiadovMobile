@@ -1,4 +1,4 @@
-package data;
+package com.epam.mtat.data;
 
 /**
  * DataEnum - class for unification of used data.
@@ -15,7 +15,9 @@ public enum DataEnum {
   USER_EMAIL("epamApp.userEmail"),
   USER_NAME("epamApp.userName"),
   USER_PASSWORD("epamApp.userPassword"),
-  TARGET_PAGE("epamApp.targetPage");
+  TARGET_PAGE("epamApp.targetPage"),
+
+  API_KEY("apyKey");
 
   private final String value;
 

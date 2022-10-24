@@ -1,6 +1,6 @@
-package utils;
+package com.epam.mtat.utils;
 
-import data.DataEnum;
+import com.epam.mtat.data.DataEnum;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -24,17 +24,31 @@ public class PropertiesLoader {
    */
   public static String getProperty(DataEnum dataEnum) {
     if (!properties.containsKey(dataEnum.getValue())) {
-      readProperties();
+      readTestProperties();
+      readApyKey();
     }
-    return properties.getProperty(dataEnum.getValue());
+    String property = properties.getProperty(dataEnum.getValue());
+    if (property != null) {
+      return property;
+    }
+    throw new IllegalArgumentException("Property is empty: " + dataEnum.getValue());
   }
 
-  private static void readProperties() {
-    String fileLocation = "src/test/resources/data/testData.properties";
+  private static void readTestProperties() {
+    String fileLocation = "src/main/resources/data/testData.properties";
     try (FileInputStream inputStream = new FileInputStream(fileLocation)) {
       properties.load(inputStream);
     } catch (IOException e) {
       log.error("Read of properties File Failed: ", e);
+    }
+  }
+
+  private static void readApyKey() {
+    String fileLocation = "src/main/resources/secrets/apiKey.properties";
+    try (FileInputStream inputStream = new FileInputStream(fileLocation)) {
+      properties.load(inputStream);
+    } catch (IOException e) {
+      log.info("Read of properties Api Key Failed: ", e);
     }
   }
 }

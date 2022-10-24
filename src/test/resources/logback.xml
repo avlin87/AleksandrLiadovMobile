@@ -6,7 +6,7 @@
     </encoder>
   </appender>
 
-  <logger level="error" additivity="false">
+  <logger name="com.epam.mtat" level="info" additivity="false">
     <appender-ref ref="CONSOLE_LOG"/>
   </logger>
 
